@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DF.VIP.Models.NavigatorModel>
+
+<ul class="nav nav-list">
+    <li class="">
+        <a href="index.html">
+            <i class="menu-icon fa fa-tachometer"></i>
+            <span class="menu-text"> Dashboard </span>
+        </a>
+
+        <b class="arrow"></b>
+    </li>
+    @foreach (var resource in Model)
+    {
+        <li class="">
+            <a href="@resource.Href" class="dropdown-toggle">
+                <i class="menu-icon fa @resource.Icon"></i>
+                <span class="menu-text"> @resource.Title </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+            @foreach (var item in @resource.Children)
+            {
+                <li class="">
+                    <a href="@item.Href">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        @item.Title
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            }
+            </ul>
+        </li>
+    }
+
+
+</ul><!-- /.nav-list -->
+
