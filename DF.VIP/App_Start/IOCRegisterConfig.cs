@@ -7,6 +7,9 @@ using Autofac.Integration.Mvc;
 using System.Web.Mvc;
 using DF.VIP.Infrastructure.Logger;
 using DF.VIP.Infrastructure.Configuration;
+using DF.VIP.Infrastructure.Repository;
+using DF.VIP.Infrastructure.Entity.Admin;
+using DF.VIP.AppService.Authentication;
 
 namespace DF.VIP
 {
@@ -16,9 +19,12 @@ namespace DF.VIP
         {
 
             var builder = new ContainerBuilder();
-
+            builder.RegisterType<VIPDB>().As<IDbContext>().InstancePerRequest();
             builder.RegisterType<Log4NetAdapter>().As<ILogger>().InstancePerRequest();
-            builder.RegisterType<ConfigApplicationSettings>().As<IApplicationSettings>().InstancePerRequest();
+            builder.RegisterType<AuthenticationService>().As<IAuthenticationService>().InstancePerRequest();
+            builder.RegisterType<CommandRepository<LoginUser>>().As<ICommandRepository<LoginUser>>().InstancePerRequest();
+            builder.RegisterType<QueryRepository<LoginUser>>().As<IQueryRepository<LoginUser>>().InstancePerRequest();
+
             builder.RegisterType<ApplicationSettingsFactory>().AsSelf().SingleInstance();
             builder.RegisterType<LoggingFactory>().AsSelf().SingleInstance();
             // Register your MVC controllers. (MvcApplication is the name of

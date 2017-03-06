@@ -9,7 +9,9 @@ namespace DF.VIP.Infrastructure.Repository
 {
     public  interface ICommandRepository<T> where T : BaseEntity
     {
-      
+
+        void Insert(T entity);
+
         /// <summary>
         /// Save changes
         /// </summary>

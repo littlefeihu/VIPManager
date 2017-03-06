@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +15,16 @@ namespace DF.VIP.Infrastructure.Repository
         {
             this._context = context;
         }
+
+        public void Insert(T entity)
+        {
+            _context.Set<T>().Add(entity);
+        }
+
         public int SaveChanges()
         {
            return  _context.SaveChanges();
         }
+
     }
 }

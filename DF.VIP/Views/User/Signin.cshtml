@@ -1,4 +1,4 @@
-﻿
+﻿@model DF.VIP.AppService.Models.AccountItem
 @{
     ViewBag.Title = "登录";
     Layout = null;
@@ -40,6 +40,7 @@
 </head>
 
 <body class="login-layout">
+ 
     <div class="main-container">
         <div class="main-content">
             <div class="row">
@@ -67,18 +68,20 @@
 
                                         <div class="space-6"></div>
 
-                                        <form>
+                                        <form action="/User/Signin" method="post">
                                             <fieldset>
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="tel" class="form-control" placeholder="手机号" />
+                                                        @Html.TextBoxFor(o => o.Login.LoginPhone, new { @type = "tel", @class = "form-control", @placeholder = "手机号" })
+                                                        @Html.ValidationMessageFor(o => o.Login.LoginPhone)
                                                         <i class="ace-icon fa fa-mobile-phone"></i>
                                                     </span>
                                                 </label>
 
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="password" class="form-control" placeholder="密码" />
+                                                        @Html.TextBoxFor(o => o.Login.Password, new { @type = "password", @class = "form-control", @placeholder = "密码" })
+                                                        @Html.ValidationMessageFor(o => o.Login.Password)
                                                         <i class="ace-icon fa fa-lock"></i>
                                                     </span>
                                                 </label>
@@ -86,12 +89,9 @@
                                                 <div class="space"></div>
 
                                                 <div class="clearfix">
-                                                    <label class="inline">
-                                                        <input type="checkbox" class="ace" />
-                                                        <span class="lbl"> 记住我</span>
-                                                    </label>
+                                                 
 
-                                                    <button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+                                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
                                                         <i class="ace-icon fa fa-key"></i>
                                                         <span class="bigger-110">登录</span>
                                                     </button>
@@ -134,16 +134,17 @@
                                         <p>
                                             输入您的手机号来获取密码
                                         </p>
-                                        <form>
+                                        <form action="/User/ForgetPassword" method="post">
                                             <fieldset>
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="tel" class="form-control" placeholder="手机号" />
+                                                        @Html.TextBoxFor(o => o.ForgetPassword.ForgetPasswordPhone, new { @type = "tel", @class = "form-control", @placeholder = "手机号" })
+                                                        @Html.ValidationMessageFor(o => o.ForgetPassword.ForgetPasswordPhone)
                                                         <i class="ace-icon fa fa-mobile-phone"></i>
                                                     </span>
-                                                </label>
+                                                </label> 请输入账号信息
                                                 <div class="clearfix">
-                                                    <button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+                                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-danger">
                                                         <i class="ace-icon fa fa-lightbulb-o"></i>
                                                         <span class="bigger-110">发送!</span>
                                                     </button>
@@ -172,37 +173,33 @@
                                         <div class="space-6"></div>
                                         <p> 输入您的注册信息: </p>
 
-                                        <form>
+                                        <form action="/User/Register" method="post">
                                             <fieldset>
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="tel" class="form-control" placeholder="手机号" />
+                                                        @Html.TextBoxFor(o => o.Register.RegisterPhone, new { @type = "tel", @class = "form-control", @placeholder = "手机号" })
+                                                        @Html.ValidationMessageFor(o => o.Register.RegisterPhone)
                                                         <i class="ace-icon fa fa-mobile-phone"></i>
                                                     </span>
                                                 </label>
 
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="text" class="form-control" placeholder="昵称" />
-                                                        <i class="ace-icon fa fa-user"></i>
-                                                    </span>
-                                                </label>
-
-                                                <label class="block clearfix">
-                                                    <span class="block input-icon input-icon-right">
-                                                        <input type="password" class="form-control" placeholder="密码" />
+                                                        @Html.TextBoxFor(o => o.Register.Password1, new { @type = "password", @class = "form-control", @placeholder = "密码" })
+                                                        @Html.ValidationMessageFor(o => o.Register.Password1)
                                                         <i class="ace-icon fa fa-lock"></i>
                                                     </span>
                                                 </label>
 
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="password" class="form-control" placeholder="重复输入上面的密码" />
+                                                        @Html.TextBoxFor(o => o.Register.Password2, new { @type = "password", @class = "form-control", @placeholder = "重复输入上面的密码" })
+                                                        @Html.ValidationMessageFor(o => o.Register.Password2)
                                                         <i class="ace-icon fa fa-retweet"></i>
                                                     </span>
                                                 </label>
 
-                                                <label class="block">
+                                                @*<label class="block">
                                                     <input type="checkbox" class="ace" />
                                                     <span class="lbl">
                                                         接受
@@ -210,7 +207,7 @@
                                                     </span>
                                                 </label>
 
-                                                <div class="space-24"></div>
+                                                <div class="space-24"></div>*@
 
                                                 <div class="clearfix">
                                                     <button type="reset" class="width-30 pull-left btn btn-sm">
@@ -218,7 +215,7 @@
                                                         <span class="bigger-110">重置</span>
                                                     </button>
 
-                                                    <button type="button" class="width-65 pull-right btn btn-sm btn-success">
+                                                    <button type="submit" class="width-65 pull-right btn btn-sm btn-success">
                                                         <span class="bigger-110">注册</span>
 
                                                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
@@ -260,7 +257,8 @@
     <!-- basic scripts -->
     <!--[if !IE]> -->
     <script src="/assets/js/jquery-2.1.4.min.js"></script>
-
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <!-- <![endif]-->
     <!--[if IE]>
     <script src="assets/js/jquery-1.11.3.min.js"></script>
@@ -271,6 +269,9 @@
 
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
+            $(function () {
+                $("form").validate();
+            });
 			jQuery(function($) {
 			 $(document).on('click', '.toolbar a[data-target]', function(e) {
 				e.preventDefault();
