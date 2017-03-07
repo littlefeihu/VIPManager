@@ -10,6 +10,7 @@ using DF.VIP.Infrastructure.Configuration;
 using DF.VIP.Infrastructure.Repository;
 using DF.VIP.Infrastructure.Entity.Admin;
 using DF.VIP.AppService.Authentication;
+using DF.VIP.Infrastructure.Security;
 
 namespace DF.VIP
 {
@@ -19,6 +20,7 @@ namespace DF.VIP
         {
 
             var builder = new ContainerBuilder();
+            builder.RegisterType<EncryptionService>().As<IEncryptionService>().InstancePerRequest();
             builder.RegisterType<VIPDB>().As<IDbContext>().InstancePerRequest();
             builder.RegisterType<Log4NetAdapter>().As<ILogger>().InstancePerRequest();
             builder.RegisterType<AuthenticationService>().As<IAuthenticationService>().InstancePerRequest();

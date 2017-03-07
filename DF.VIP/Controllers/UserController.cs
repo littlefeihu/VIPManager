@@ -19,32 +19,54 @@ namespace DF.VIP.Controllers
         [HttpGet]
         public ActionResult Signin()
         {
-            AccountItem item = new AccountItem();
+            LoginItem item = new LoginItem();
             return View(item);
         }
         [HttpPost]
-        public ActionResult Signin(AccountItem item)
+        public ActionResult Signin(LoginItem item)
         {
             if (ModelState.IsValid)
             {
-                if (!this.authenticationService.Login(item.Login))
+                if (!this.authenticationService.Login(item))
                 {
                     ModelState.AddModelError("login", "登陆失败");
                 }
             }
-            return View();
+          return  RedirectToAction("Index", "VIP");
+        }
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View(new RegisterItem());
         }
         [HttpPost]
-        public ActionResult Register(AccountItem item)
+        public ActionResult Register(RegisterItem item)
         {
             if (ModelState.IsValid)
             {
-                this.authenticationService.Register(item.Register);
+                if (item.Password1 != item.Password2)
+                {
+                    ModelState.AddModelError("password confirm", "两次输入密码不一致");
+                }
+                try
+                {
+                    this.authenticationService.Register(item);
+                    return RedirectToAction("Signin");
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError("register error", "注册过程发生错误");
+                }
             }
-            return RedirectToAction("Signin");
+            return View();
+        }
+        [HttpGet]
+        public ActionResult ForgetPassword()
+        {
+            return View(new ForgetPasswordItem());
         }
         [HttpPost]
-        public ActionResult ForgetPassword(AccountItem item)
+        public ActionResult ForgetPassword(ForgetPasswordItem item)
         {
             if (ModelState.IsValid)
             {
@@ -52,12 +74,6 @@ namespace DF.VIP.Controllers
             }
             return View();
         }
-        [ChildActionOnly]
-        public ActionResult Navigator()
-        {
-            IList<NavigatorModel> navigatorModels = new List<NavigatorModel>();
-
-            return View("_PartialNavigator", navigatorModels);
-        }
+     
     }
 }

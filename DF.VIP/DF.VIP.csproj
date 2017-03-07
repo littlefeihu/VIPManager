@@ -269,6 +269,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\VIP\Index.cshtml" />
     <Content Include="Views\Shared\_PartialNavigator.cshtml" />
+    <Content Include="Views\Shared\_LayoutAuthentication.cshtml" />
+    <Content Include="Views\User\ForgetPassword.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -95,6 +95,8 @@
     <Compile Include="Repository\QueryRepository.cs" />
     <Compile Include="Repository\VIPDB.cs" />
     <Compile Include="Repository\VIPDB.exe.cs" />
+    <Compile Include="Security\EncryptionService.cs" />
+    <Compile Include="Security\IEncryptionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

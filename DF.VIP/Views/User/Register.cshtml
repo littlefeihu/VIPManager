@@ -1,0 +1,77 @@
+﻿@model DF.VIP.AppService.Models.RegisterItem
+@{
+    ViewBag.Title = "会员注册";
+    Layout = "~/Views/Shared/_LayoutAuthentication.cshtml";
+}
+<div id="signup-box" class="signup-box visible widget-box no-border">
+    <div class="widget-body">
+        <div class="widget-main">
+            <h4 class="header green lighter bigger">
+                <i class="ace-icon fa fa-users blue"></i>
+                新用户注册
+            </h4>
+
+            <div class="space-6"></div>
+            <p> 输入您的注册信息:@Html.ValidationSummary() </p>
+
+            <form action="@Url.Action("Register")" method="post">
+                <fieldset>
+                    <label class="block clearfix">
+                        <span class="block input-icon input-icon-right">
+                            @Html.TextBoxFor(o => o.RegisterPhone, new { @type = "tel", @class = "form-control", @placeholder = "手机号" })
+                            @Html.ValidationMessageFor(o => o.RegisterPhone)
+                            <i class="ace-icon fa fa-mobile-phone"></i>
+                        </span>
+                    </label>
+
+                    <label class="block clearfix">
+                        <span class="block input-icon input-icon-right">
+                            @Html.TextBoxFor(o => o.Password1, new { @type = "password", @class = "form-control", @placeholder = "密码" })
+                            @Html.ValidationMessageFor(o => o.Password1)
+                            <i class="ace-icon fa fa-lock"></i>
+                        </span>
+                    </label>
+
+                    <label class="block clearfix">
+                        <span class="block input-icon input-icon-right">
+                            @Html.TextBoxFor(o => o.Password2, new { @type = "password", @class = "form-control", @placeholder = "重复输入上面的密码" })
+                            @Html.ValidationMessageFor(o => o.Password2)
+                            <i class="ace-icon fa fa-retweet"></i>
+                        </span>
+                    </label>
+                    @*<label class="block">
+                            <input type="checkbox" class="ace" />
+                            <span class="lbl">
+                                接受
+                                <a href="#">User Agreement</a>
+                            </span>
+                        </label>
+
+                        <div class="space-24"></div>*@
+
+                    <div class="clearfix">
+                        <button type="reset" class="width-30 pull-left btn btn-sm">
+                            <i class="ace-icon fa fa-refresh"></i>
+                            <span class="bigger-110">重置</span>
+                        </button>
+
+                        <button type="submit" class="width-65 pull-right btn btn-sm btn-success">
+                            <span class="bigger-110">注册</span>
+
+                            <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="toolbar center">
+            <a href="@Url.Action("Signin")"  class="back-to-login-link">
+                <i class="ace-icon fa fa-arrow-left"></i>
+                返回到登录
+            </a>
+        </div>
+    </div><!-- /.widget-body -->
+</div><!-- /.signup-box -->
+
+

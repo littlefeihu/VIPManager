@@ -6,12 +6,7 @@ using System.Web;
 
 namespace DF.VIP.AppService.Models
 {
-    public class AccountItem
-    {
-        public LoginItem Login { get; set; }
-        public RegisterItem Register { get; set; }
-        public ForgetPasswordItem ForgetPassword{ get; set; }
-    }
+  
     public class LoginItem
     {
         [Required(ErrorMessage = "*")]

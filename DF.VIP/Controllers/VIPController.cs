@@ -20,6 +20,13 @@ namespace DF.VIP.Controllers
             return View();
         }
 
-       
+        [ChildActionOnly]
+        public ActionResult Navigator()
+        {
+            IList<NavigatorModel> navigatorModels = new List<NavigatorModel>();
+
+            return PartialView("_PartialNavigator", navigatorModels);
+        }
+
     }
 }

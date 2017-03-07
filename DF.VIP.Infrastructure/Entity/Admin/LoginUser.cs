@@ -30,6 +30,11 @@ namespace DF.VIP.Infrastructure.Entity.Admin
         public int MsgConsumedCount { get => msgConsumedCount; set => msgConsumedCount = value; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
+
+        public void EncryptPassword(string encryptedPassword)
+        {
+            this.Password = encryptedPassword;
+        }
    
     }
 }
