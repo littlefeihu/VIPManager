@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="AppDomainTypeFinder.cs" />
     <Compile Include="Authentication\FormsAuthenticationService.cs" />
+    <Compile Include="Authentication\VipFormPrincipal.cs" />
     <Compile Include="Configuration\ApplicationSettingsFactory.cs" />
     <Compile Include="Configuration\IApplicationSettings.cs" />
     <Compile Include="Configuration\WebConfigApplicationSettings.cs" />
@@ -115,7 +116,7 @@
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\Log4NetAdapter.cs" />
     <Compile Include="Logger\LoggingFactory.cs" />
-    <Compile Include="Model\UserRoles.cs" />
+    <Compile Include="Model\SimpleUser.cs" />
     <Compile Include="NopConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseEntity.cs" />

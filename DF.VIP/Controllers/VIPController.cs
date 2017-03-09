@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace DF.VIP.Controllers
 {
+    [Authorize(Roles ="Administrator")]
     public class VIPController : Controller
     {
 

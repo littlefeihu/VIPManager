@@ -1,5 +1,6 @@
 ﻿
 using DF.VIP.Infrastructure;
+using DF.VIP.Infrastructure.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace DF.VIP
 {
@@ -34,10 +36,8 @@ namespace DF.VIP
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-            if (HttpContext.Current.User != null)
-            {
-                Console.WriteLine(HttpContext.Current.User);
-            }
+            var formsAuthenticationService = VipEngine.Instance.Resolve<IFormsAuthenticationService>();
+            formsAuthenticationService.SetCurrentUser();
         }
 
         protected void Application_Error(Object sender, EventArgs e)

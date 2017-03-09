@@ -14,6 +14,7 @@ namespace DF.VIP.Infrastructure.Authentication
         void Signin(SimpleUser user);
         void SignOut();
         SimpleUser GetAuthenticatedCustomer();
+        void SetCurrentUser();
     }
 
    public class FormsAuthenticationService: IFormsAuthenticationService
@@ -86,6 +87,19 @@ namespace DF.VIP.Infrastructure.Authentication
                 throw new ArgumentNullException("ticket");
 
             return JsonHelper.JsonDeserialize<SimpleUser>(ticket.UserData);
+        }
+
+       public void SetCurrentUser()
+        {
+            if (httpContext == null ||
+            httpContext.Request == null ||
+            !httpContext.Request.IsAuthenticated ||
+            !(httpContext.User.Identity is FormsIdentity))
+            {
+                return ;
+            }
+            var formsIdentity = (FormsIdentity)httpContext.User.Identity;
+            httpContext.User = new VipFormPrincipal(formsIdentity.Ticket, GetAuthenticatedCustomerFromTicket(formsIdentity.Ticket));
         }
     }
 }
