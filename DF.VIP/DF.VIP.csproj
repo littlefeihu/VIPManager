@@ -238,13 +238,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\IOCRegisterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VIPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\DependencyRegistrar.cs" />
     <Compile Include="Models\NavigatorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

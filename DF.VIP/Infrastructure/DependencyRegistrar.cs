@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,22 +12,25 @@ using DF.VIP.Infrastructure.Repository;
 using DF.VIP.Infrastructure.Entity.Admin;
 using DF.VIP.AppService.Authentication;
 using DF.VIP.Infrastructure.Security;
-
-namespace DF.VIP
+using DF.VIP.Infrastructure.Authentication;
+using DF.VIP.Infrastructure;
+using DF.VIP.Infrastructure.DependencyManagement;
+namespace DF.VIP.Infrastructure
 {
-    public class IOCRegisterConfig
+    public class DependencyRegistrar : IDependencyRegistrar
     {
-        public static void Register()
+        public int Order { get; }
+
+        public void Register(ContainerBuilder builder, ITypeFinder typeFinder, NopConfig config)
         {
-
-            var builder = new ContainerBuilder();
-            builder.RegisterType<EncryptionService>().As<IEncryptionService>().InstancePerRequest();
-            builder.RegisterType<VIPDB>().As<IDbContext>().InstancePerRequest();
-            builder.RegisterType<Log4NetAdapter>().As<ILogger>().InstancePerRequest();
-            builder.RegisterType<AuthenticationService>().As<IAuthenticationService>().InstancePerRequest();
-            builder.RegisterType<CommandRepository<LoginUser>>().As<ICommandRepository<LoginUser>>().InstancePerRequest();
-            builder.RegisterType<QueryRepository<LoginUser>>().As<IQueryRepository<LoginUser>>().InstancePerRequest();
-
+            builder.RegisterType<FormsAuthenticationService>().As<IFormsAuthenticationService>().InstancePerLifetimeScope();
+            builder.RegisterType<EncryptionService>().As<IEncryptionService>().InstancePerLifetimeScope();
+            builder.RegisterType<VIPDB>().As<IDbContext>().InstancePerLifetimeScope();
+            builder.RegisterType<Log4NetAdapter>().As<ILogger>().InstancePerLifetimeScope();
+            builder.RegisterType<AuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
+            builder.RegisterType<CommandRepository<LoginUser>>().As<ICommandRepository<LoginUser>>().InstancePerLifetimeScope();
+            builder.RegisterType<QueryRepository<LoginUser>>().As<IQueryRepository<LoginUser>>().InstancePerLifetimeScope();
+            builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerLifetimeScope();
             builder.RegisterType<ApplicationSettingsFactory>().AsSelf().SingleInstance();
             builder.RegisterType<LoggingFactory>().AsSelf().SingleInstance();
             // Register your MVC controllers. (MvcApplication is the name of
@@ -46,13 +50,7 @@ namespace DF.VIP
             // OPTIONAL: Enable property injection into action filters.
             builder.RegisterFilterProvider();
 
-            // OPTIONAL: Enable action method parameter injection (RARE).
-            // builder.InjectActionInvoker();
 
-            // Set the dependency resolver to be Autofac.
-            var container = builder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-         
         }
-     }
+    }
 }

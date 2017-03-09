@@ -13,5 +13,8 @@ namespace DF.VIP.Infrastructure.Entity.Admin
         public int RoleID { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
+
+        public virtual LoginUser User { set; get; }
+        public virtual Role Role { set; get; }
     }
 }

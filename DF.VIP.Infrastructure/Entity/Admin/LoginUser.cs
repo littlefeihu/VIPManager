@@ -35,6 +35,7 @@ namespace DF.VIP.Infrastructure.Entity.Admin
         {
             this.Password = encryptedPassword;
         }
-   
+
+        public virtual ICollection<UserRole> UserRoles { set; get; }
     }
 }

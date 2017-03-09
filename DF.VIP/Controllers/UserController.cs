@@ -1,20 +1,27 @@
 ﻿using DF.VIP.AppService.Authentication;
 using DF.VIP.AppService.Models;
+using DF.VIP.Infrastructure;
+using DF.VIP.Infrastructure.Authentication;
+using DF.VIP.Infrastructure.Model;
 using DF.VIP.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace DF.VIP.Controllers
 {
     public class UserController : Controller
     {
         IAuthenticationService authenticationService;
-        public UserController(IAuthenticationService authenticationService)
+        private readonly HttpContextBase httpContext;
+        public UserController(IAuthenticationService authenticationService, HttpContextBase httpContext)
         {
             this.authenticationService = authenticationService;
+            this.httpContext = httpContext;
         }
         [HttpGet]
         public ActionResult Signin()
@@ -27,12 +34,14 @@ namespace DF.VIP.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!this.authenticationService.Login(item))
+                var userRoles = this.authenticationService.Login(item);
+                if (userRoles == null)
                 {
                     ModelState.AddModelError("login", "登陆失败");
+                    return View();
                 }
             }
-          return  RedirectToAction("Index", "VIP");
+            return RedirectToAction("Index", "VIP");
         }
         [HttpGet]
         public ActionResult Register()
@@ -74,6 +83,11 @@ namespace DF.VIP.Controllers
             }
             return View();
         }
-     
+        public ActionResult SignOut()
+        {
+          
+            this.authenticationService.SignOut();
+            return RedirectToAction("Signin");
+        }
     }
 }
