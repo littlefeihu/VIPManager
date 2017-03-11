@@ -7,9 +7,7 @@ namespace DF.VIP.Infrastructure.Repository.Mapping
     {
         public LoginUserMap()
         {
-            this.ToTable("LoginUser");
-            this.HasKey(a => a.ID);
-            
+            this.ToTable("LoginUser").HasKey(o => o.ID);
         }
     }
 }

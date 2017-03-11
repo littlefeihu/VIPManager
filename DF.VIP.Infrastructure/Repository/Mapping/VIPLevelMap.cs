@@ -10,6 +10,8 @@ namespace DF.VIP.Infrastructure.Repository.Mapping
         {
             this.ToTable("VIPLevel");
             this.HasKey(a => a.ID);
+
+            this.HasRequired<LoginUser>(o => o.User).WithMany(o => o.VipLevels).HasForeignKey(o=>o.UserID);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DF.VIP.Infrastructure.Entity.Admin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,8 @@ namespace DF.VIP.Infrastructure.Entity.VipUser
         public bool IsActive { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
+        public int UserID { get; set; }
+
+        public virtual LoginUser User { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DF.VIP.Infrastructure.Entity.Admin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,15 @@ namespace DF.VIP.Infrastructure.Entity.VipUser
         public string IdentityID { get; set; }
         public string Remark { get; set; }
         public bool IsActive { get; set; }
+        public bool Gender { get; set; }
+        public DateTime Birthday { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
+
+        public virtual VIPLevel VipLevel { get; set; }
+        public virtual LoginUser User { get; set; }
+
+        public virtual ICollection<PrePaid> PrePaids { get; set; }
+        public virtual ICollection<CostRecord> CostRecords { get; set; }
     }
 }

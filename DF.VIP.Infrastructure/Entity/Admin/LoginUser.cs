@@ -1,4 +1,5 @@
-﻿using DF.VIP.Infrastructure.Repository;
+﻿using DF.VIP.Infrastructure.Entity.VipUser;
+using DF.VIP.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,6 @@ namespace DF.VIP.Infrastructure.Entity.Admin
             this.Password = encryptedPassword;
         }
 
-        public virtual ICollection<UserRole> UserRoles { set; get; }
 
         public void Login()
         {
@@ -58,5 +58,13 @@ namespace DF.VIP.Infrastructure.Entity.Admin
                 NickName =phone
             };
         }
+
+
+        public virtual ICollection<UserRole> UserRoles { set; get; }
+
+        public virtual ICollection<VIPLevel> VipLevels { get; set; }
+
+        public virtual ICollection<CostType> CostTypes { get; set; }
+
     }
 }

@@ -10,6 +10,7 @@ namespace DF.VIP.Infrastructure.Repository.Mapping
         {
             this.ToTable("VIPMember");
             this.HasKey(a => a.ID);
+            
         }
     }
 }

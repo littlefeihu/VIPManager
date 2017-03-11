@@ -108,6 +108,9 @@
     <Compile Include="Entity\Admin\Role.cs" />
     <Compile Include="Entity\Admin\RoleAuthority.cs" />
     <Compile Include="Entity\Admin\UserRole.cs" />
+    <Compile Include="Entity\VipUser\CostRecord.cs" />
+    <Compile Include="Entity\VipUser\CostType.cs" />
+    <Compile Include="Entity\VipUser\PrePaid.cs" />
     <Compile Include="Entity\VipUser\VIPLevel.cs" />
     <Compile Include="Entity\VipUser\VIPMember.cs" />
     <Compile Include="ExtensionMethod\LinqExtension.cs" />
@@ -126,6 +129,9 @@
     <Compile Include="Repository\IDbContext.cs" />
     <Compile Include="Repository\IQueryRepository.cs" />
     <Compile Include="Entity\Admin\LoginUser.cs" />
+    <Compile Include="Repository\Mapping\CostRecordMap.cs" />
+    <Compile Include="Repository\Mapping\CostTypeMap.cs" />
+    <Compile Include="Repository\Mapping\PrePaidMap.cs" />
     <Compile Include="Repository\Mapping\VIPMemberMap.cs" />
     <Compile Include="Repository\Mapping\VIPLevelMap.cs" />
     <Compile Include="Repository\Mapping\UserRoleMap.cs" />
