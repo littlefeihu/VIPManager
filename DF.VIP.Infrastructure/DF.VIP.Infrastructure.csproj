@@ -110,6 +110,7 @@
     <Compile Include="Entity\Admin\UserRole.cs" />
     <Compile Include="Entity\VipUser\VIPLevel.cs" />
     <Compile Include="Entity\VipUser\VIPMember.cs" />
+    <Compile Include="ExtensionMethod\LinqExtension.cs" />
     <Compile Include="ITypeFinder.cs" />
     <Compile Include="IWebHelper.cs" />
     <Compile Include="JSONHelper.cs" />

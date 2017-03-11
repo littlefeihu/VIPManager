@@ -1,4 +1,5 @@
-﻿using DF.VIP.Models;
+﻿using DF.VIP.AppService.Resources;
+using DF.VIP.Infrastructure.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,13 @@ namespace DF.VIP.Controllers
     [Authorize(Roles ="Administrator")]
     public class VIPController : Controller
     {
+        IResourceService resourceService;
+        HttpContextBase httpContextBase;
 
-        public VIPController()
+        public VIPController(IResourceService resourceService, HttpContextBase httpContextBase)
         {
-
+            this.resourceService = resourceService;
+            this.httpContextBase = httpContextBase;
         }
         // GET: VIP
         public ActionResult Index()
@@ -24,7 +28,9 @@ namespace DF.VIP.Controllers
         [ChildActionOnly]
         public ActionResult Navigator()
         {
-            IList<NavigatorModel> navigatorModels = new List<NavigatorModel>();
+            var currentUser = this.httpContextBase.User as VipFormPrincipal;
+
+            var navigatorModels = this.resourceService.GetAuthorisedNavigator(currentUser.UserData);
 
             return PartialView("_PartialNavigator", navigatorModels);
         }

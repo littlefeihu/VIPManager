@@ -37,5 +37,26 @@ namespace DF.VIP.Infrastructure.Entity.Admin
         }
 
         public virtual ICollection<UserRole> UserRoles { set; get; }
+
+        public void Login()
+        {
+            this.LastSignTime = DateTime.Now;
+        }
+
+     
+
+        public static LoginUser CreateUser(string phone,string encryptedpassword)
+        {
+          return  new LoginUser
+            {
+                CreateTime = DateTime.Now,
+                IsActive = true,
+                Locked = false,
+                Password = encryptedpassword,
+                Phone = phone,
+                UpdateTime = DateTime.Now,
+                NickName =phone
+            };
+        }
     }
 }

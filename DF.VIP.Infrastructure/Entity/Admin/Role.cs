@@ -16,5 +16,8 @@ namespace DF.VIP.Infrastructure.Entity.Admin
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
         public virtual ICollection<UserRole> UserRoles { set; get; }
+
+        public virtual ICollection<RoleAuthority> RoleAuthorities { set; get; }
+
     }
 }

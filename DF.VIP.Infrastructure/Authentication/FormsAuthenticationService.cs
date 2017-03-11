@@ -31,7 +31,7 @@ namespace DF.VIP.Infrastructure.Authentication
             var now = DateTime.Now;
             var ticket = new FormsAuthenticationTicket(
             1 /*version*/,
-            user.UserName,
+            user.Name,
             now,
             now.Add(new TimeSpan(0, 30, 0)),
             false,

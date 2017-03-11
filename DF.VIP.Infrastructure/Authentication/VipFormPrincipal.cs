@@ -37,7 +37,7 @@ namespace DF.VIP.Infrastructure.Authentication
 
         public bool IsInRole(string role)
         {
-            return _userData.Roles.Contains(role);
+            return _userData.Roles.Any(o=>o.Name==role);
         }
     }
 }

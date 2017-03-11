@@ -9,6 +9,9 @@ namespace DF.VIP.Infrastructure.Repository.Mapping
         {
             this.ToTable("RoleAuthority");
             this.HasKey(a => a.ID);
+
+            HasRequired(pt => pt.Resource).WithMany(p => p.RoleAuthorities).HasForeignKey(pt => pt.ResourceID).WillCascadeOnDelete(false);
+            HasRequired(pt => pt.Role).WithMany(t => t.RoleAuthorities).HasForeignKey(pt => pt.RoleID).WillCascadeOnDelete(false);
         }
     }
 }

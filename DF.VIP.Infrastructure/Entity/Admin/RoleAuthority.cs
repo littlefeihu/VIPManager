@@ -11,7 +11,11 @@ namespace DF.VIP.Infrastructure.Entity.Admin
     
         public int ResourceID { get; set; }
         public int RoleID { get; set; }
+        public bool IsActive { get; set; }
+
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
+        public virtual Resource Resource { set; get; }
+        public virtual Role Role { set; get; }
     }
 }

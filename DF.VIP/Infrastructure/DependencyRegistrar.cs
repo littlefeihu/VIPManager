@@ -15,6 +15,8 @@ using DF.VIP.Infrastructure.Security;
 using DF.VIP.Infrastructure.Authentication;
 using DF.VIP.Infrastructure;
 using DF.VIP.Infrastructure.DependencyManagement;
+using DF.VIP.AppService.Resources;
+
 namespace DF.VIP.Infrastructure
 {
     public class DependencyRegistrar : IDependencyRegistrar
@@ -25,11 +27,12 @@ namespace DF.VIP.Infrastructure
         {
             builder.RegisterType<FormsAuthenticationService>().As<IFormsAuthenticationService>().InstancePerLifetimeScope();
             builder.RegisterType<EncryptionService>().As<IEncryptionService>().InstancePerLifetimeScope();
+            builder.RegisterType<ResourceService>().As<IResourceService>().InstancePerLifetimeScope();
             builder.RegisterType<VIPDB>().As<IDbContext>().InstancePerLifetimeScope();
             builder.RegisterType<Log4NetAdapter>().As<ILogger>().InstancePerLifetimeScope();
             builder.RegisterType<AuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
-            builder.RegisterType<CommandRepository<LoginUser>>().As<ICommandRepository<LoginUser>>().InstancePerLifetimeScope();
-            builder.RegisterType<QueryRepository<LoginUser>>().As<IQueryRepository<LoginUser>>().InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(CommandRepository<>)).As(typeof(ICommandRepository<>)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(QueryRepository<>)).As(typeof(IQueryRepository<>)).InstancePerLifetimeScope();
             builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerLifetimeScope();
             builder.RegisterType<ApplicationSettingsFactory>().AsSelf().SingleInstance();
             builder.RegisterType<LoggingFactory>().AsSelf().SingleInstance();

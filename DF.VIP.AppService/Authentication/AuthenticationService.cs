@@ -30,33 +30,41 @@ namespace DF.VIP.AppService.Authentication
             throw new NotImplementedException();
         }
 
-        public SimpleUser Login(LoginItem item)
+
+
+        private bool TryGetUser(out LoginUser user, LoginItem item)
         {
             var encryptedPwd = this.encryptionService.EncryptText(item.Password, "9FD84A6B-3345-4726-B4F6-4B5D8C3664AE");
-            var user = qRepository.Entities.Where(o => o.Phone == item.LoginPhone && o.Password == encryptedPwd && o.IsActive && !o.Locked).FirstOrDefault();
-            if (user != null)
+            user = qRepository.Entities.Where(o => o.Phone == item.LoginPhone && o.Password == encryptedPwd && o.IsActive && !o.Locked).FirstOrDefault();
+            return user != null;
+        }
+
+        private bool TryGetRoles(out List<SimpleRole> roles, LoginUser user)
+        {
+            roles = qRepository.Entities.First(o => o.ID == user.ID).UserRoles.Select(o => SimpleRole.CreateRole(o.RoleID, o.Role.RoleName)).ToList();
+            return roles != null;
+        }
+
+        public SimpleUser Login(LoginItem item)
+        {
+
+            if (TryGetUser(out LoginUser user, item))
             {
-                user.LastSignTime = DateTime.Now;
+                if (TryGetRoles(out List<SimpleRole> roles, user))
+                {
+                    user.Login();
+                    var simpleUser = SimpleUser.CreateUser(user.ID, user.NickName, roles);
+                    cmdRepository.SaveChanges();
 
-                cmdRepository.SaveChanges();
+                    this.formsAuthenticationService.Signin(simpleUser);
 
-                var roles=qRepository.Entities.First(o => o.ID == user.ID).UserRoles.Select(o => o.Role.RoleName).ToList();
-
-                var simpleUser= new SimpleUser { UserName=user.NickName, UserID=user.ID, Roles= roles };
-
-                this.formsAuthenticationService.Signin(simpleUser);
-
-                return simpleUser;
+                    return simpleUser;
+                }
             }
-            else
-            {
-                return null;
-            }
-
+            return null;
         }
         public void SignOut()
         {
-            this.formsAuthenticationService.GetAuthenticatedCustomer();
             this.formsAuthenticationService.SignOut();
         }
         public void Register(RegisterItem item)
@@ -65,16 +73,10 @@ namespace DF.VIP.AppService.Authentication
             {
                 throw new Exception("user has exists");
             }
-            var user = new LoginUser
-            {
-                CreateTime = DateTime.Now,
-                IsActive = true,
-                Locked = false,
-                Password = this.encryptionService.EncryptText(item.Password1, "9FD84A6B-3345-4726-B4F6-4B5D8C3664AE"),
-                Phone = item.RegisterPhone,
-                UpdateTime = DateTime.Now,
-                NickName = "aa"
-            };
+
+           var encryptedPassword=  this.encryptionService.EncryptText(item.Password1, "9FD84A6B-3345-4726-B4F6-4B5D8C3664AE");
+
+            var user = LoginUser.CreateUser(item.RegisterPhone, encryptedPassword);
             this.cmdRepository.Insert(user);
             this.cmdRepository.SaveChanges();
         }

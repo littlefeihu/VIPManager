@@ -245,7 +245,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\DependencyRegistrar.cs" />
-    <Compile Include="Models\NavigatorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -281,15 +280,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DF.VIP.AppService\DF.VIP.AppService.csproj">
       <Project>{a1a26405-e51f-41be-94e7-5be94e0a0641}</Project>
       <Name>DF.VIP.AppService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DF.VIP.Domain\DF.VIP.Domain.csproj">
-      <Project>{cac56d7c-f9fd-4605-a9c2-d33309091195}</Project>
-      <Name>DF.VIP.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\DF.VIP.Infrastructure\DF.VIP.Infrastructure.csproj">
       <Project>{7c554b23-282a-4bb4-a922-0fbc661d0b98}</Project>
