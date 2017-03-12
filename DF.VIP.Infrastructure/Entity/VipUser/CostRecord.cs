@@ -10,13 +10,13 @@ namespace DF.VIP.Infrastructure.Entity.VipUser
     {
         int vipID;
         int costTypeID;
-        float cost;
+        decimal cost;
         int remark;
         DateTime createTime;
 
         public int VipID { get => vipID; set => vipID = value; }
         public int CostTypeID { get => costTypeID; set => costTypeID = value; }
-        public float Cost { get => cost; set => cost = value; }
+        public decimal Cost { get => cost; set => cost = value; }
         public int Remark { get => remark; set => remark = value; }
         public DateTime CreateTime { get => createTime; set => createTime = value; }
 

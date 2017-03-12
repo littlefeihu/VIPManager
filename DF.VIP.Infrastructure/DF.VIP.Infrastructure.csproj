@@ -99,6 +99,7 @@
     <Compile Include="AppDomainTypeFinder.cs" />
     <Compile Include="Authentication\FormsAuthenticationService.cs" />
     <Compile Include="Authentication\VipFormPrincipal.cs" />
+    <Compile Include="Binder\JqGridSearchBinder.cs" />
     <Compile Include="Configuration\ApplicationSettingsFactory.cs" />
     <Compile Include="Configuration\IApplicationSettings.cs" />
     <Compile Include="Configuration\WebConfigApplicationSettings.cs" />
@@ -120,6 +121,8 @@
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\Log4NetAdapter.cs" />
     <Compile Include="Logger\LoggingFactory.cs" />
+    <Compile Include="Model\JqGridResult.cs" />
+    <Compile Include="Model\JqGridSearchRequest.cs" />
     <Compile Include="Model\SimpleUser.cs" />
     <Compile Include="NopConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,6 +150,8 @@
     <Compile Include="Security\IEncryptionService.cs" />
     <Compile Include="VipEngine.cs" />
     <Compile Include="WebAppTypeFinder.cs" />
+    <Compile Include="Web\IWebContext.cs" />
+    <Compile Include="Web\WebContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

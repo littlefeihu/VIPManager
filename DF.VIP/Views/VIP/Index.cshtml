@@ -2,6 +2,32 @@
 @{
     ViewBag.Title = "会员管理系统";
 }
-
-<h2>Index</h2>
-
+<div class="page-header">
+    <h1>
+        会员管理系统
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            温馨提示
+        </small>
+    </h1>
+</div><!-- /.page-header -->
+<div class="row">
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="alert alert-info">
+            <button class="close" data-dismiss="alert">
+                <i class="ace-icon fa fa-times"></i>
+            </button>
+            <i class="ace-icon fa fa-hand-o-right"></i>
+            尊敬的客户
+            @{
+                if (HttpContext.Current.User != null)
+                {
+                    <span> @HttpContext.Current.User.Identity.Name</span>
+                }
+            },您好,欢迎使用东方托福的会员管理系统，在使用过程中如果遇到什么问题，请拨打我们的客户服务电话
+          
+        </div>
+        <!-- PAGE CONTENT ENDS -->
+    </div><!-- /.col -->
+</div><!-- /.row -->

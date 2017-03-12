@@ -16,6 +16,8 @@ using DF.VIP.Infrastructure.Authentication;
 using DF.VIP.Infrastructure;
 using DF.VIP.Infrastructure.DependencyManagement;
 using DF.VIP.AppService.Resources;
+using DF.VIP.AppService.Vip;
+using DF.VIP.Infrastructure.Web;
 
 namespace DF.VIP.Infrastructure
 {
@@ -25,6 +27,7 @@ namespace DF.VIP.Infrastructure
 
         public void Register(ContainerBuilder builder, ITypeFinder typeFinder, NopConfig config)
         {
+            builder.RegisterType<VipService>().As<IVipService>().InstancePerLifetimeScope();
             builder.RegisterType<FormsAuthenticationService>().As<IFormsAuthenticationService>().InstancePerLifetimeScope();
             builder.RegisterType<EncryptionService>().As<IEncryptionService>().InstancePerLifetimeScope();
             builder.RegisterType<ResourceService>().As<IResourceService>().InstancePerLifetimeScope();
@@ -34,6 +37,8 @@ namespace DF.VIP.Infrastructure
             builder.RegisterGeneric(typeof(CommandRepository<>)).As(typeof(ICommandRepository<>)).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(QueryRepository<>)).As(typeof(IQueryRepository<>)).InstancePerLifetimeScope();
             builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerLifetimeScope();
+            builder.RegisterType<WebContext>().As<IWebContext>().InstancePerLifetimeScope();
+
             builder.RegisterType<ApplicationSettingsFactory>().AsSelf().SingleInstance();
             builder.RegisterType<LoggingFactory>().AsSelf().SingleInstance();
             // Register your MVC controllers. (MvcApplication is the name of

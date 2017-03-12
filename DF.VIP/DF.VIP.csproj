@@ -239,6 +239,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Binder\JqGridSearchBinder.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VIPController.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,6 +272,7 @@
     <Content Include="Views\Shared\_LayoutAuthentication.cshtml" />
     <Content Include="Views\User\ForgetPassword.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\VIP\VipList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

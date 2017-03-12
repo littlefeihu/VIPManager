@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "我的会员";
+}
+@section page_specific_plugin_styles
+{
+<link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="/assets/css/ui.jqgrid.min.css" />
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="alert alert-info">
+            <button class="close" data-dismiss="alert">
+                <i class="ace-icon fa fa-times"></i>
+            </button>
+            <i class="ace-icon fa fa-hand-o-right"></i>
+            Please note that demo server is not configured to save the changes, therefore you may see an error message.
+        </div>
+        <div id="grid-pager"></div>
+        <table id="grid-table"></table>
+        <!-- PAGE CONTENT ENDS -->
+    </div><!-- /.col -->
+</div><!-- /.row -->
+
+@section customJs
+{
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            var grid_selector = "#grid-table";
+            var pager_selector = "#grid-pager";
+            var parent_column = $(grid_selector).closest('[class*="col-"]');
+            //resize to fit page size
+            $(window).on('resize.jqGrid', function () {
+                $(grid_selector).jqGrid('setGridWidth', parent_column.width());
+            });
+
+            //resize on sidebar collapse/expand
+            $(document).on('settings.ace.jqGrid', function (ev, event_name, collapsed) {
+                if (event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed') {
+                    //setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+                    setTimeout(function () {
+                        $(grid_selector).jqGrid('setGridWidth', parent_column.width());
+                    }, 20);
+                }
+            });
+
+            jQuery(grid_selector).jqGrid({
+                url: '/vip/members',
+                datatype: "json",
+                height: "100%",
+                colNames: ['手机号', '昵称', '性别', '余额', '更新日期', '备注'],
+                colModel: [
+                    { name: 'PhoneNum', index: 'PhoneNum', width: 60, sortable: false },
+                    { name: 'NickName', index: 'NickName', width: 90, sortable: false  },
+                    { name: 'Gender', index: 'Gender', width: 150 , sortable: false },
+                    { name: 'Amount', index: 'Amount', width: 70, sortable: false  },
+                    { name: 'UpdateTime', index: 'UpdateTime', width: 90, sortable: false  },
+                    { name: 'Remark', index: 'Remark', width: 150, sortable: false }
+                ],
+                rowNum: 10,
+                sortname: 'UpdateTime',
+                sortorder: "desc",
+                viewrecords: true,
+                pager: pager_selector,
+                multiselect: false,
+                multiboxonly: false,
+                jsonReader: {
+                    root: "Rows",
+                    page: "CurrentPage",
+                    total: "TotalPage",
+                    records: "TotalRecords"
+                },
+                loadComplete: function () {
+                    var table = this;
+                    setTimeout(function () {
+                        updatePagerIcons(table);
+                        enableTooltips(table);
+                    }, 0);
+                }
+            });
+            $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+            //replace icons with FontAwesome icons like above
+            function updatePagerIcons(table) {
+                var replacement =
+                    {
+                        'ui-icon-seek-first': 'ace-icon fa fa-angle-double-left bigger-140',
+                        'ui-icon-seek-prev': 'ace-icon fa fa-angle-left bigger-140',
+                        'ui-icon-seek-next': 'ace-icon fa fa-angle-right bigger-140',
+                        'ui-icon-seek-end': 'ace-icon fa fa-angle-double-right bigger-140'
+                    };
+                $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function () {
+                    var icon = $(this);
+                    var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+                    if ($class in replacement) icon.attr('class', 'ui-icon ' + replacement[$class]);
+                })
+            }
+
+            function enableTooltips(table) {
+                $('.navtable .ui-pg-button').tooltip({ container: 'body' });
+                $(table).find('.ui-pg-div').tooltip({ container: 'body' });
+            }
+        });
+</script>
+
+}
+@section page_specific_plugin_scripts
+{
+<script src="/assets/js/bootstrap-datepicker.min.js"></script>
+<script src="/assets/js/jquery.jqGrid.min.js"></script>
+<script src="/assets/js/grid.locale-en.js"></script>
+}

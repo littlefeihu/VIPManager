@@ -16,13 +16,11 @@ namespace DF.VIP.AppService.Resources
         IQueryRepository<RoleAuthority> roleAuthorityQ;
         public ResourceService(IQueryRepository<RoleAuthority> roleAuthorityQ)
         {
-          
             this.roleAuthorityQ = roleAuthorityQ;
         }
-         public List<NavigatorModel> GetAuthorisedNavigator(SimpleUser user)
+        public List<NavigatorModel> GetAuthorisedNavigator(SimpleUser user)
         {
-           
-            var resources = this.roleAuthorityQ.Entities.Where(o=>o.IsActive).WhereIn(o => o.RoleID, user.Roles.Select(o => o.ID)).Select(o=>o.Resource).ToList();
+           var resources = this.roleAuthorityQ.Entities.Where(o=>o.IsActive).WhereIn(o => o.RoleID, user.Roles.Select(o => o.ID)).Select(o=>o.Resource).ToList();
            return  NavigatorModel.CreateNavigator(resources);
         }
     }

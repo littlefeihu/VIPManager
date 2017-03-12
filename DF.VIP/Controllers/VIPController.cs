@@ -1,5 +1,8 @@
 ﻿using DF.VIP.AppService.Resources;
+using DF.VIP.AppService.Vip;
 using DF.VIP.Infrastructure.Authentication;
+using DF.VIP.Infrastructure.Models;
+using DF.VIP.Infrastructure.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,29 +11,45 @@ using System.Web.Mvc;
 
 namespace DF.VIP.Controllers
 {
-    [Authorize(Roles ="Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class VIPController : Controller
     {
         IResourceService resourceService;
-        HttpContextBase httpContextBase;
+        IVipService vipService;
+        IWebContext webContext;
 
-        public VIPController(IResourceService resourceService, HttpContextBase httpContextBase)
+        public VIPController(IResourceService resourceService, IVipService vipService, IWebContext webContext)
         {
             this.resourceService = resourceService;
-            this.httpContextBase = httpContextBase;
+            this.vipService = vipService;
+            this.webContext = webContext;
         }
+
+
+
         // GET: VIP
         public ActionResult Index()
         {
             return View();
         }
 
+        public ActionResult VipList()
+        {
+            return View();
+        }
+
+
+        public JsonResult Members(JqGridSearchRequest searchRequest)
+        {
+          var model= this.vipService.SearchVipMembers(searchRequest,this.webContext.CurrentUser.ID);
+        
+            return Json(model,JsonRequestBehavior.AllowGet);
+        }
+
         [ChildActionOnly]
         public ActionResult Navigator()
         {
-            var currentUser = this.httpContextBase.User as VipFormPrincipal;
-
-            var navigatorModels = this.resourceService.GetAuthorisedNavigator(currentUser.UserData);
+            var navigatorModels = this.resourceService.GetAuthorisedNavigator(webContext.CurrentUser);
 
             return PartialView("_PartialNavigator", navigatorModels);
         }
