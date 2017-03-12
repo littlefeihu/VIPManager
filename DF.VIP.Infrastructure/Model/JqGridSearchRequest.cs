@@ -17,13 +17,15 @@ namespace DF.VIP.Infrastructure.Models
         string sidx ;
         string sord;
         bool _search;
+        string phone;
 
-        public JqGridSearchRequest(int page, int rows, string sidx, string sord, bool search)
+        public JqGridSearchRequest(int page, int rows, string sidx, string sord, bool search,string phone)
         {
             this.page = page;
             this.rows = rows;
             this.sidx = sidx;
             this.sord = sord;
+            this.Phone = phone;
             _search = search;
         }
         /// <summary>
@@ -38,6 +40,8 @@ namespace DF.VIP.Infrastructure.Models
         public string Sord { get => sord; set => sord = value; }
         public bool Search { get => _search; set => _search = value; }
 
+    
+
         public int SkipNum
         {
             get
@@ -45,5 +49,7 @@ namespace DF.VIP.Infrastructure.Models
                return (Page - 1) * Rows;
             }
         }
+
+        public string Phone { get => phone; set => phone = value; }
     }
 }

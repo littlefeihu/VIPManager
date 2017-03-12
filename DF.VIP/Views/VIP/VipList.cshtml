@@ -4,34 +4,83 @@
 }
 @section page_specific_plugin_styles
 {
-<link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
-<link rel="stylesheet" href="/assets/css/ui.jqgrid.min.css" />
+<link rel="stylesheet" href="/assets/css/daterangepicker.min.css" />
+<link rel="stylesheet" href="/assets/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="/assets/css/ui.jqgrid.min.css" />
 }
 
 <div class="row">
     <div class="col-xs-12">
         <!-- PAGE CONTENT BEGINS -->
-        <div class="alert alert-info">
-            <button class="close" data-dismiss="alert">
-                <i class="ace-icon fa fa-times"></i>
-            </button>
-            <i class="ace-icon fa fa-hand-o-right"></i>
-            Please note that demo server is not configured to save the changes, therefore you may see an error message.
+        <div class="search-area well">
+            <form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input class="form-control" id="phonesearch" value="" placeholder="手机号" type="text">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-primary btn-sm" id="searchvipbtn">
+                                    <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#addvip-modal" role="button" class="btn btn-sm btn-primary" data-toggle="modal">
+                            添加会员
+                        </a>
+                   </div>
+                </div>
+            </form>
         </div>
-        <div id="grid-pager"></div>
         <table id="grid-table"></table>
+        <div id="grid-pager"></div>
         <!-- PAGE CONTENT ENDS -->
     </div><!-- /.col -->
 </div><!-- /.row -->
+@Html.Partial("_PartialAddVip")
 
 @section customJs
 {
     <script type="text/javascript">
-        jQuery(function ($) {
+        function updatePagerIcons(table) {
+            var replacement =
+                {
+                    'ui-icon-seek-first': 'ace-icon fa fa-angle-double-left bigger-140',
+                    'ui-icon-seek-prev': 'ace-icon fa fa-angle-left bigger-140',
+                    'ui-icon-seek-next': 'ace-icon fa fa-angle-right bigger-140',
+                    'ui-icon-seek-end': 'ace-icon fa fa-angle-double-right bigger-140'
+                };
+            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function () {
+                var icon = $(this);
+                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
 
+                if ($class in replacement) icon.attr('class', 'ui-icon ' + replacement[$class]);
+            })
+        }
+
+        function enableTooltips(table) {
+            $('.navtable .ui-pg-button').tooltip({ container: 'body' });
+            $(table).find('.ui-pg-div').tooltip({ container: 'body' });
+        }
+        function LoadData(grid_selector) {
+            $(grid_selector).jqGrid('setGridParam', {
+                datatype: 'json',
+                postData: { 'phone': $("#phonesearch").val() }, //发送数据
+                page: 1
+            }).trigger("reloadGrid");
+        }
+        jQuery(function ($) {
             var grid_selector = "#grid-table";
             var pager_selector = "#grid-pager";
             var parent_column = $(grid_selector).closest('[class*="col-"]');
+
+            $("#searchvipbtn").click(function () {
+                LoadData(grid_selector);
+
+            });
             //resize to fit page size
             $(window).on('resize.jqGrid', function () {
                 $(grid_selector).jqGrid('setGridWidth', parent_column.width());
@@ -46,21 +95,20 @@
                     }, 20);
                 }
             });
-
             jQuery(grid_selector).jqGrid({
                 url: '/vip/members',
                 datatype: "json",
                 height: "100%",
                 colNames: ['手机号', '昵称', '性别', '余额', '更新日期', '备注'],
                 colModel: [
-                    { name: 'PhoneNum', index: 'PhoneNum', width: 60, sortable: false },
-                    { name: 'NickName', index: 'NickName', width: 90, sortable: false  },
-                    { name: 'Gender', index: 'Gender', width: 150 , sortable: false },
-                    { name: 'Amount', index: 'Amount', width: 70, sortable: false  },
-                    { name: 'UpdateTime', index: 'UpdateTime', width: 90, sortable: false  },
-                    { name: 'Remark', index: 'Remark', width: 150, sortable: false }
+                    { name: 'PhoneNum', index: 'PhoneNum', width: 50, sortable: false },
+                    { name: 'NickName', index: 'NickName', width: 30, sortable: false },
+                    { name: 'Gender', index: 'Gender', width: 15, sortable: false },
+                    { name: 'Amount', index: 'Amount', width: 15, sortable: false },
+                    { name: 'UpdateTime', index: 'UpdateTime', width: 50, sortable: false },
+                    { name: 'Remark', index: 'Remark', sortable: false }
                 ],
-                rowNum: 10,
+                rowNum: 15,
                 sortname: 'UpdateTime',
                 sortorder: "desc",
                 viewrecords: true,
@@ -81,35 +129,15 @@
                     }, 0);
                 }
             });
-            $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
-            //replace icons with FontAwesome icons like above
-            function updatePagerIcons(table) {
-                var replacement =
-                    {
-                        'ui-icon-seek-first': 'ace-icon fa fa-angle-double-left bigger-140',
-                        'ui-icon-seek-prev': 'ace-icon fa fa-angle-left bigger-140',
-                        'ui-icon-seek-next': 'ace-icon fa fa-angle-right bigger-140',
-                        'ui-icon-seek-end': 'ace-icon fa fa-angle-double-right bigger-140'
-                    };
-                $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function () {
-                    var icon = $(this);
-                    var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+            $(window).triggerHandler('resize.jqGrid');
 
-                    if ($class in replacement) icon.attr('class', 'ui-icon ' + replacement[$class]);
-                })
-            }
-
-            function enableTooltips(table) {
-                $('.navtable .ui-pg-button').tooltip({ container: 'body' });
-                $(table).find('.ui-pg-div').tooltip({ container: 'body' });
-            }
         });
-</script>
+    </script>
 
 }
 @section page_specific_plugin_scripts
-{
-<script src="/assets/js/bootstrap-datepicker.min.js"></script>
-<script src="/assets/js/jquery.jqGrid.min.js"></script>
-<script src="/assets/js/grid.locale-en.js"></script>
+{<script src="/assets/js/moment.min.js"></script>
+     <script src="/assets/js/daterangepicker.min.js"></script>
+    <script src="/assets/js/jquery.jqGrid.min.js"></script>
+    <script src="/assets/js/grid.locale-en.js"></script>
 }

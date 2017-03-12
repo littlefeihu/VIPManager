@@ -17,8 +17,8 @@ namespace DF.VIP.Infrastructure.Binder
             var sidx = controllerContext.HttpContext.Request["sidx"];
             var sord = controllerContext.HttpContext.Request["sord"];
             var _search = controllerContext.HttpContext.Request["_search"];
-
-            return new JqGridSearchRequest (int.Parse(page),int.Parse(rows),sidx,sord,bool.Parse(_search));
+            var phone = controllerContext.HttpContext.Request["phone"];
+            return new JqGridSearchRequest (int.Parse(page),int.Parse(rows),sidx,sord,bool.Parse(_search),phone);
         }
     }
 }
