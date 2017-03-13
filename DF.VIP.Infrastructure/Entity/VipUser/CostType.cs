@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DF.VIP.Infrastructure.Entity.VipUser
 {
-    public class CostType:BaseEntity
+    public partial class CostType:BaseEntity
     {
         int userID;
         string costTypeName;
@@ -22,9 +22,5 @@ namespace DF.VIP.Infrastructure.Entity.VipUser
         public bool IsActive { get => isActive; set => isActive = value; }
         public string Remark { get => remark; set => remark = value; }
         public DateTime CreateTime { get => createTime; set => createTime = value; }
-
-        public virtual LoginUser User { get; set; }
-
-        public virtual ICollection<CostRecord> CostRecords { get; set; }
     }
 }

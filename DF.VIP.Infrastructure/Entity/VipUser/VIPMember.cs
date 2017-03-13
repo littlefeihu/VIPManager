@@ -26,10 +26,5 @@ namespace DF.VIP.Infrastructure.Entity.VipUser
         public DateTime UpdateTime { get; set; }
         [Timestamp]
         public byte[] RowVersion { get; set; }
-
-        public virtual VIPLevel VipLevel { get; set; }
-        public virtual LoginUser User { get; set; }
-        public virtual ICollection<PrePaid> PrePaids { get; set; }
-        public virtual ICollection<CostRecord> CostRecords { get; set; }
     }
 }

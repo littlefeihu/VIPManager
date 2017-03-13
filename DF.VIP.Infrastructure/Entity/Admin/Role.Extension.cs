@@ -9,12 +9,9 @@ namespace DF.VIP.Infrastructure.Entity.Admin
 {
    public partial class Role: BaseEntity
     {
-     
-        public string RoleName { get; set; }
-        public string Remark { get; set; }
+        public virtual ICollection<UserRole> UserRoles { set; get; }
 
-        public DateTime CreateTime { get; set; }
-        public DateTime UpdateTime { get; set; }
+        public virtual ICollection<RoleAuthority> RoleAuthorities { set; get; }
 
     }
 }

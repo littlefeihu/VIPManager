@@ -9,11 +9,8 @@ namespace DF.VIP.Infrastructure.Entity.VipUser
 {
     public partial class VIPLevel : BaseEntity
     {
+        public virtual LoginUser User { get; set; }
 
-        public string LevelName { get; set; }
-        public bool IsActive { get; set; }
-        public DateTime CreateTime { get; set; }
-        public DateTime UpdateTime { get; set; }
-        public int UserID { get; set; }
+        public virtual ICollection<VIPMember> VIPMembers { get; set; }
     }
 }

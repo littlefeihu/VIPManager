@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DF.VIP.Infrastructure.Entity.VipUser
 {
-    public class CostRecord : BaseEntity
+    public partial class CostRecord : BaseEntity
     {
         int vipID;
         int costTypeID;
@@ -19,8 +19,5 @@ namespace DF.VIP.Infrastructure.Entity.VipUser
         public decimal Cost { get => cost; set => cost = value; }
         public int Remark { get => remark; set => remark = value; }
         public DateTime CreateTime { get => createTime; set => createTime = value; }
-
-        public virtual CostType CostType { get; set; }
-        public virtual VIPMember VipMember { get; set; }
     }
 }

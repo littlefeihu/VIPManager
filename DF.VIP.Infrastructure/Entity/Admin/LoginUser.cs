@@ -32,39 +32,7 @@ namespace DF.VIP.Infrastructure.Entity.Admin
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
 
-        public void EncryptPassword(string encryptedPassword)
-        {
-            this.Password = encryptedPassword;
-        }
-
-
-        public void Login()
-        {
-            this.LastSignTime = DateTime.Now;
-        }
-
-     
-
-        public static LoginUser CreateUser(string phone,string encryptedpassword)
-        {
-          return  new LoginUser
-            {
-                CreateTime = DateTime.Now,
-                IsActive = true,
-                Locked = false,
-                Password = encryptedpassword,
-                Phone = phone,
-                UpdateTime = DateTime.Now,
-                NickName =phone
-            };
-        }
-
-
-        public virtual ICollection<UserRole> UserRoles { set; get; }
-
-        public virtual ICollection<VIPLevel> VipLevels { get; set; }
-
-        public virtual ICollection<CostType> CostTypes { get; set; }
+  
 
     }
 }
