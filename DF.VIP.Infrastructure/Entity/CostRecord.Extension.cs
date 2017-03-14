@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DF.VIP.Infrastructure.Entity.VipUser
+namespace DF.VIP.Infrastructure.Entity
 {
     public partial class CostRecord : BaseEntity
     {
-        public virtual CostType CostType { get; set; }
-        public virtual VIPMember VipMember { get; set; }
+        public virtual VIPMember VIPMember { get; set; }
     }
 }

@@ -61,7 +61,7 @@ namespace DF.VIP.Controllers
                     this.authenticationService.Register(item);
                     return RedirectToAction("Signin");
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     ModelState.AddModelError("register error", "注册过程发生错误");
                 }

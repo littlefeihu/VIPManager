@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Threading;
-using DF.VIP.Infrastructure.Entity.Admin;
+using DF.VIP.Infrastructure.Entity;
 
 namespace DF.VIP.Test
 {

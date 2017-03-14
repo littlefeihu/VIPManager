@@ -9,15 +9,21 @@ namespace DF.VIP.Infrastructure.Model
 {
     public class SimpleUser
     {
-       
         public string Name { get; set; }
         public int ID { get; set; }
         public List<SimpleRole> Roles { get; set; }
+        public SimpleCompany Company { get; set; }
 
-       public static SimpleUser CreateUser(int userid,string username,List<SimpleRole> roles)
+       public static SimpleUser CreateUser(int userid,string username, SimpleCompany company, List<SimpleRole> roles)
        {
-            return new SimpleUser { ID=userid, Name=username, Roles=roles };
+            return new SimpleUser { ID=userid, Name=username, Roles=roles,Company=company };
        }
+    }
+
+    public class SimpleCompany
+    {
+        public string Name { get; set; }
+        public int ID { get; set; }
     }
 
     public class SimpleRole

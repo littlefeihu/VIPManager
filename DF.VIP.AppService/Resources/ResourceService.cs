@@ -1,5 +1,5 @@
 ﻿using DF.VIP.AppService.Models;
-using DF.VIP.Infrastructure.Entity.Admin;
+using DF.VIP.Infrastructure.Entity;
 using DF.VIP.Infrastructure.Model;
 using DF.VIP.Infrastructure.Repository;
 using System;

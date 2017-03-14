@@ -1,4 +1,4 @@
-﻿using DF.VIP.Infrastructure.Entity.VipUser;
+﻿using DF.VIP.Infrastructure.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,11 @@ namespace DF.VIP.Infrastructure.Repository.Mapping
     {
         public PrePaidMap()
         {
-            this.ToTable("PrePaid").HasRequired<VIPMember>(o=>o.VipMember).WithMany(o => o.PrePaids).HasForeignKey(o => o.VipID);
+            this.ToTable("PrePaid");
+
+            this.HasRequired(o=>o.VipMember).WithMany(o => o.PrePaids).HasForeignKey(o => o.VIPID);
+            this.HasRequired(o => o.Company).WithMany(o => o.PrePaids).HasForeignKey(o => o.CompanyID);
+
 
         }
     }

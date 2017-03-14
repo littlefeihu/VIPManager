@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DF.VIP.Infrastructure.Entity.Admin
+namespace DF.VIP.Infrastructure.Entity
 {
-    public  partial class RoleAuthority:BaseEntity
+    public  partial class UserRole:BaseEntity
     {
-        public virtual Resource Resource { set; get; }
+        public virtual LoginUser User { set; get; }
         public virtual Role Role { set; get; }
     }
 }

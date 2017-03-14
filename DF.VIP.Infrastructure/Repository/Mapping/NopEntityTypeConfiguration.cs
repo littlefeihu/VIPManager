@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DF.VIP.Infrastructure.Repository.Mapping
 {
-    public abstract class NopEntityTypeConfiguration<T> : EntityTypeConfiguration<T> where T : class
+    public abstract class NopEntityTypeConfiguration<T> : EntityTypeConfiguration<T> where T : BaseEntity
     {
         protected NopEntityTypeConfiguration()
         {
@@ -21,6 +21,7 @@ namespace DF.VIP.Infrastructure.Repository.Mapping
         protected virtual void PostInitialize()
         {
 
+            this.HasKey(o => o.ID);
         }
     }
 }

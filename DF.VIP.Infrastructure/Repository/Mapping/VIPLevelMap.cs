@@ -1,6 +1,5 @@
 ﻿
-using DF.VIP.Infrastructure.Entity.Admin;
-using DF.VIP.Infrastructure.Entity.VipUser;
+using DF.VIP.Infrastructure.Entity;
 
 namespace DF.VIP.Infrastructure.Repository.Mapping
 {
@@ -9,9 +8,8 @@ namespace DF.VIP.Infrastructure.Repository.Mapping
         public VIPLevelMap()
         {
             this.ToTable("VIPLevel");
-            this.HasKey(a => a.ID);
 
-            this.HasRequired<LoginUser>(o => o.User).WithMany(o => o.VipLevels).HasForeignKey(o=>o.UserID);
+            this.HasRequired<Company>(o => o.Company).WithMany(o => o.VIPLevels).HasForeignKey(o=>o.CompanyID);
         }
     }
 }

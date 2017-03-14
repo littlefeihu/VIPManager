@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DF.VIP.Infrastructure.Entity.Admin
+namespace DF.VIP.Infrastructure.Entity
 {
    public partial class Role: BaseEntity
     {

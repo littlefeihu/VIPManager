@@ -11,6 +11,6 @@ namespace DF.VIP.AppService.Vip
 {
     public interface IVipService
     {
-        JqGridResult<VipMemberItem> SearchVipMembers(JqGridSearchRequest request, int userid);
+        JqGridResult<VipMemberItem> SearchVipMembers(JqGridSearchRequest request, int companyid);
     }
 }

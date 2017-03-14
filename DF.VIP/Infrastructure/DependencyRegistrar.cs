@@ -1,19 +1,11 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Autofac;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
-using System.Web.Mvc;
 using DF.VIP.Infrastructure.Logger;
 using DF.VIP.Infrastructure.Configuration;
 using DF.VIP.Infrastructure.Repository;
-using DF.VIP.Infrastructure.Entity.Admin;
 using DF.VIP.AppService.Authentication;
 using DF.VIP.Infrastructure.Security;
 using DF.VIP.Infrastructure.Authentication;
-using DF.VIP.Infrastructure;
 using DF.VIP.Infrastructure.DependencyManagement;
 using DF.VIP.AppService.Resources;
 using DF.VIP.AppService.Vip;

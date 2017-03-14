@@ -1,30 +1,55 @@
-﻿using DF.VIP.Infrastructure.Entity.Admin;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DF.VIP.Infrastructure.Entity.VipUser
+namespace DF.VIP.Infrastructure.Entity
 {
    public partial class VIPMember:BaseEntity
     {
-     
-        public int UserID { get; set; }
-        public int VIPLevelID { get; set; }
+        public int CompanyID { get; set; }
+
+        [Required]
+        [StringLength(20)]
         public string PhoneNum { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string NickName { get; set; }
-        
-        public string IdentityID { get; set; }
-        public string Remark { get; set; }
-        public bool IsActive { get; set; }
-        public bool Gender { get; set; }
+
         public decimal Amount { get; set; }
+
+        public int VIPLevelID { get; set; }
+
+        [StringLength(50)]
+        public string IdentityID { get; set; }
+
+        [StringLength(50)]
+        public string Remark { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public bool Gender { get; set; }
+
         public DateTime? Birthday { get; set; }
+
         public DateTime CreateTime { get; set; }
+
         public DateTime UpdateTime { get; set; }
+
+        [Column(TypeName = "timestamp")]
+        [MaxLength(8)]
         [Timestamp]
         public byte[] RowVersion { get; set; }
+
+        [StringLength(50)]
+        public string CreateBy { get; set; }
+
+        [StringLength(50)]
+        public string UpdateBy { get; set; }
     }
 }

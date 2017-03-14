@@ -1,13 +1,9 @@
 ﻿using DF.VIP.AppService.Models;
-using DF.VIP.Infrastructure.Entity.VipUser;
+using DF.VIP.Infrastructure.Entity;
 using DF.VIP.Infrastructure.Model;
 using DF.VIP.Infrastructure.Models;
 using DF.VIP.Infrastructure.Repository;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DF.VIP.AppService.Vip
 {
@@ -19,10 +15,10 @@ namespace DF.VIP.AppService.Vip
             this.vipmemberQ = vipmemberQ;
         }
 
-        public JqGridResult<VipMemberItem> SearchVipMembers(JqGridSearchRequest request,int userid)
+        public JqGridResult<VipMemberItem> SearchVipMembers(JqGridSearchRequest request,int companyid)
         {
-            var baseResult =string.IsNullOrEmpty(request.Phone)? this.vipmemberQ.Entities.Where(o => o.UserID == userid): 
-                this.vipmemberQ.Entities.Where(o => o.UserID == userid&&o.PhoneNum.Contains(request.Phone));
+            var baseResult =string.IsNullOrEmpty(request.Phone)? this.vipmemberQ.Entities.Where(o => o.CompanyID == companyid) : 
+                this.vipmemberQ.Entities.Where(o => o.CompanyID== companyid&& o.PhoneNum.Contains(request.Phone));
             int totalCount = baseResult.Count();
 
           var rows=  baseResult.OrderBy(o => o.UpdateTime).Skip(request.SkipNum).Take(request.Rows).AsEnumerable().Select(o => new VipMemberItem

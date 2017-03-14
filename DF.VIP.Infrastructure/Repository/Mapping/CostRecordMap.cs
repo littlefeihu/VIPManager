@@ -1,4 +1,6 @@
-﻿using DF.VIP.Infrastructure.Entity.VipUser;
+﻿
+
+using DF.VIP.Infrastructure.Entity;
 
 namespace DF.VIP.Infrastructure.Repository.Mapping
 {
@@ -7,10 +9,9 @@ namespace DF.VIP.Infrastructure.Repository.Mapping
         public CostRecordMap()
         {
             this.ToTable("CostRecord");
-
-            this.HasKey(o => o.ID).HasRequired(o => o.VipMember).WithMany(o => o.CostRecords).HasForeignKey(o => o.VipID);
-
-            this.HasRequired(o => o.CostType).WithMany(o => o.CostRecords).HasForeignKey(o => o.CostTypeID);
+       
+            this.HasKey(o => o.ID).HasRequired(o => o.VIPMember).WithMany(o => o.CostRecords).HasForeignKey(o => o.VipID);
+          
         }
     }
 }

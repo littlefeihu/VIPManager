@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DF.VIP.Infrastructure.Entity.Admin
+namespace DF.VIP.Infrastructure.Entity
 {
-    public  partial class RoleAuthority:BaseEntity
+    public  partial class PrePaid : BaseEntity
     {
-    
-        public int ResourceID { get; set; }
-        public int RoleID { get; set; }
-        public bool IsActive { get; set; }
+        public int CompanyID { get; set; }
+
+        public int VIPID { get; set; }
+
+        public decimal Amount { get; set; }
 
         public DateTime CreateTime { get; set; }
+
         public DateTime UpdateTime { get; set; }
     }
 }

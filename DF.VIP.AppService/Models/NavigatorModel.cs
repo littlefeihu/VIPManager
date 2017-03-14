@@ -1,4 +1,4 @@
-﻿using DF.VIP.Infrastructure.Entity.Admin;
+﻿using DF.VIP.Infrastructure.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

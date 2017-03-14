@@ -1,5 +1,6 @@
 ﻿
-using DF.VIP.Infrastructure.Entity.Admin;
+
+using DF.VIP.Infrastructure.Entity;
 
 namespace DF.VIP.Infrastructure.Repository.Mapping
 {
@@ -7,7 +8,8 @@ namespace DF.VIP.Infrastructure.Repository.Mapping
     {
         public LoginUserMap()
         {
-            this.ToTable("LoginUser").HasKey(o => o.ID);
+            this.ToTable("LoginUser");
+            this.HasRequired(o => o.Company).WithMany(o => o.LoginUsers).HasForeignKey(o => o.CompanyID);
         }
     }
 }
