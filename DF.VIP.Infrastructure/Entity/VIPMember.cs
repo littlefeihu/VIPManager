@@ -11,6 +11,28 @@ namespace DF.VIP.Infrastructure.Entity
 {
    public partial class VIPMember:BaseEntity
     {
+        public VIPMember()
+        {
+
+        }
+        public VIPMember(int companyID, string phoneNum, string nickName, decimal amount, int vIPLevelID, string identityID, string remark, bool isActive, bool gender, string birthday, DateTime createTime, DateTime updateTime, string createBy, string updateBy)
+        {
+            CompanyID = companyID;
+            PhoneNum = phoneNum;
+            NickName = nickName;
+            Amount = amount;
+            VIPLevelID = vIPLevelID;
+            IdentityID = identityID;
+            Remark = remark;
+            IsActive = isActive;
+            Gender = gender;
+            Birthday = birthday;
+            CreateTime = createTime;
+            UpdateTime = updateTime;
+            CreateBy = createBy;
+            UpdateBy = updateBy;
+        }
+
         public int CompanyID { get; set; }
 
         [Required]
@@ -35,7 +57,7 @@ namespace DF.VIP.Infrastructure.Entity
 
         public bool Gender { get; set; }
 
-        public DateTime? Birthday { get; set; }
+        public string Birthday { get; set; }
 
         public DateTime CreateTime { get; set; }
 

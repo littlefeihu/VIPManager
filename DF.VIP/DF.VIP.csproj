@@ -273,6 +273,7 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\VIP\VipList.cshtml" />
     <Content Include="Views\Shared\_PartialAddVip.cshtml" />
+    <Content Include="Views\VIP\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

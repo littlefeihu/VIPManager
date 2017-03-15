@@ -6,8 +6,8 @@
 {
 <link rel="stylesheet" href="/assets/css/daterangepicker.min.css" />
 <link rel="stylesheet" href="/assets/css/bootstrap-datetimepicker.min.css" />
-    <link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
-    <link rel="stylesheet" href="/assets/css/ui.jqgrid.min.css" />
+<link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="/assets/css/ui.jqgrid.min.css" />
 }
 
 <div class="row">
@@ -73,6 +73,30 @@
             }).trigger("reloadGrid");
         }
         jQuery(function ($) {
+
+            $("#add-save").click(function () {
+
+                if (!$("#add-phone").val())
+                {
+                    alert("手机号为必填项");
+                    return;
+                }
+                var data = new Object();
+                data.phone = $("#add-phone").val();
+
+               data.nickname = $("#add-nickname").val();
+               data.gender = $("#add-gender").val();
+               data.level = $("#add-level").val();
+               data.month = $("#add-month").val();
+               data.day = $("#add-day").val();
+               data.remark = $("#add-remark").val();
+
+               $.post("/vip/Add", data, function (result) {
+
+                   alert("创建会员成功");
+                });
+
+            });
             var grid_selector = "#grid-table";
             var pager_selector = "#grid-pager";
             var parent_column = $(grid_selector).closest('[class*="col-"]');
@@ -95,13 +119,18 @@
                     }, 20);
                 }
             });
+
+            function PhoneLink(vellvalue,options,rowobj)
+            {
+                return "<a href='/vip/detail/" + rowobj.ID+"' >"+ rowobj.PhoneNum + "</a>";
+            }
             jQuery(grid_selector).jqGrid({
                 url: '/vip/members',
                 datatype: "json",
                 height: "100%",
                 colNames: ['手机号', '昵称', '性别', '余额', '更新日期', '备注'],
                 colModel: [
-                    { name: 'PhoneNum', index: 'PhoneNum', width: 50, sortable: false },
+                    { name: 'PhoneNum', index: 'PhoneNum', width: 50, sortable: false,formatter:PhoneLink },
                     { name: 'NickName', index: 'NickName', width: 30, sortable: false },
                     { name: 'Gender', index: 'Gender', width: 15, sortable: false },
                     { name: 'Amount', index: 'Amount', width: 15, sortable: false },
@@ -136,7 +165,8 @@
 
 }
 @section page_specific_plugin_scripts
-{<script src="/assets/js/moment.min.js"></script>
+{
+    <script src="/assets/js/moment.min.js"></script>
      <script src="/assets/js/daterangepicker.min.js"></script>
     <script src="/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/assets/js/grid.locale-en.js"></script>

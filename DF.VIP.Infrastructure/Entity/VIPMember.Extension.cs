@@ -23,5 +23,7 @@ namespace DF.VIP.Infrastructure.Entity
         public virtual ICollection<PrePaid> PrePaids { get; set; }
 
         public virtual VIPLevel VIPLevel { get; set; }
+
+
     }
 }

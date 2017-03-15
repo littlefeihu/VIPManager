@@ -1,0 +1,114 @@
+﻿@model   DF.VIP.Infrastructure.Entity.VIPMember
+@{
+    ViewBag.Title = "会员明细";
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="center">
+            <span class="btn btn-app btn-sm btn-light no-hover">
+                <span class="line-height-1 bigger-170 blue"> 充值</span>
+                <br>
+                <span class="line-height-1 smaller-90">&nbsp;</span>
+            </span>
+            <span class="btn btn-app btn-sm btn-yellow no-hover">
+                <span class="line-height-1 bigger-170"> 购买</span>
+                <br>
+                <span class="line-height-1 smaller-90"> 服务 </span>
+            </span>
+            <span class="btn btn-app btn-sm btn-pink no-hover">
+                <span class="line-height-1 bigger-170"> 金额 </span>
+                <br>
+                <span class="line-height-1 smaller-90"> 消费 </span>
+            </span>
+            <span class="btn btn-app btn-sm btn-grey no-hover">
+                <span class="line-height-1 bigger-170"> 服务 </span>
+                <br>
+                <span class="line-height-1 smaller-90"> 消费 </span>
+            </span>
+        </div>
+        <div class="space-12"></div>
+        <div class="profile-user-info profile-user-info-striped">
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 昵称 </div>
+                <div class="profile-info-value">
+                    <span class="editable editable-click" >@Model.NickName</span>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 手机号 </div>
+                <div class="profile-info-value">
+                    <span class="editable editable-click">@Model.PhoneNum</span>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 余额 </div>
+                <div class="profile-info-value">
+                    <span class="editable editable-click" >@Model.Amount</span>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 会员等级 </div>
+                <div class="profile-info-value">
+                    <span class="editable editable-click" >@Model.VIPLevel.LevelName</span>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 性别 </div>
+                <div class="profile-info-value">
+                    <span class="editable editable-click" >@Model.Gender</span>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 生日 </div>
+                <div class="profile-info-value">
+                    <span class="editable editable-click" >@Model.Birthday</span>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 注册日期 </div>
+                <div class="profile-info-value">
+                    <span class="editable editable-click" >@Model.CreateTime.ToString("D")</span>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 上次消费日期 </div>
+                <div class="profile-info-value">
+                    <span class="editable editable-click" >@Model.UpdateTime.ToString("D")</span>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> 备注 </div>
+                <div class="profile-info-value">
+                    <span class="editable editable-click" >@Model.Remark</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-12"></div>
+
+        <div class="tabbable">
+            <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                <li class="active">
+                    <a data-toggle="tab" href="#home4" aria-expanded="true">充值记录</a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#profile4" aria-expanded="false">按金额消费记录</a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" href="#dropdown14" aria-expanded="false">按次消费记录</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="home4" class="tab-pane active">
+                    <p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+                </div>
+                <div id="profile4" class="tab-pane">
+                    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+                </div>
+                <div id="dropdown14" class="tab-pane">
+                    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>

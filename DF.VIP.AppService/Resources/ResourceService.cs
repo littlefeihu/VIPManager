@@ -20,7 +20,7 @@ namespace DF.VIP.AppService.Resources
         }
         public List<NavigatorModel> GetAuthorisedNavigator(SimpleUser user)
         {
-           var resources = this.roleAuthorityQ.Entities.Where(o=>o.IsActive).WhereIn(o => o.RoleID, user.Roles.Select(o => o.ID)).Select(o=>o.Resource).ToList();
+           var resources = this.roleAuthorityQ.Entities.Where(o=>o.IsActive).WhereIn(o => o.RoleID, user.Roles.Select(o => o.ID)).Where(o=>o.Resource.IsActive).Select(o=>o.Resource).ToList();
            return  NavigatorModel.CreateNavigator(resources);
         }
     }

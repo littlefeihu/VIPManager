@@ -1,7 +1,10 @@
 ﻿using DF.VIP.AppService.Resources;
 using DF.VIP.AppService.Vip;
 using DF.VIP.Infrastructure.Authentication;
+using DF.VIP.Infrastructure.Entity;
+using DF.VIP.Infrastructure.Model;
 using DF.VIP.Infrastructure.Models;
+using DF.VIP.Infrastructure.Repository;
 using DF.VIP.Infrastructure.Web;
 using System;
 using System.Collections.Generic;
@@ -17,6 +20,7 @@ namespace DF.VIP.Controllers
         IResourceService resourceService;
         IVipService vipService;
         IWebContext webContext;
+       
 
         public VIPController(IResourceService resourceService, IVipService vipService, IWebContext webContext)
         {
@@ -41,9 +45,27 @@ namespace DF.VIP.Controllers
 
         public JsonResult Members(JqGridSearchRequest searchRequest)
         {
-          var model= this.vipService.SearchVipMembers(searchRequest,this.webContext.CurrentUser.ID);
-        
-            return Json(model,JsonRequestBehavior.AllowGet);
+            var model = this.vipService.SearchVipMembers(searchRequest, this.webContext.CurrentUser.Company.ID);
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult Detail(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return RedirectToAction("VipList");
+            }
+            var vip = this.vipService.GetVipDetail(id.Value);
+            return View(vip);
+        }
+
+        public string Add(CreateVipRequest request)
+        {
+            request.CompanyID = this.webContext.CurrentUser.Company.ID;
+            this.vipService.CreateVip(request);
+            return "";
         }
 
         [ChildActionOnly]

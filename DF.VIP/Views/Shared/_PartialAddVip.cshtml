@@ -15,21 +15,21 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1">手机号</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" id="form-field-1" placeholder="手机号" class="col-xs-10 col-sm-5" />
+                                    <input type="text" id="add-phone" placeholder="手机号" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1">昵称</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" id="form-field-1" placeholder="昵称" class="col-xs-10 col-sm-5" />
+                                    <input type="text" id="add-nickname" placeholder="昵称" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1">性别</label>
 
                                 <div class="col-sm-9">
-                                    <select class="form-control">
+                                    <select class="form-control" id="add-gender">
                                         <option value="1" selected="selected">
                                             男
                                         </option>
@@ -41,12 +41,12 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Vip等级</label>
 
                                 <div class="col-sm-9">
-                                    <select class="form-control">
+                                    <select class="form-control" id="add-level">
                                         <option value="1" selected="selected">
-                                           金卡
+                                           白金卡
                                         </option>
-                                        <option value="2"> 银卡</option>
-                                        <option value="3"> 铜卡</option>
+                                        <option value="2"> 金卡</option>
+                                        <option value="3"> 银卡</option>
                                     </select>
                                 </div>
                             </div>
@@ -54,33 +54,29 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1">生日</label>
 
                                 <div class="col-sm-3">
-                                        <select class="form-control">
+                                        <select class="form-control" id="add-month">
                                            @for (int i = 1; i <= 12; i++)
                                            {
-                                            <option value="@i">@i</option>
+                                            <option value="@i">@i 月</option>
                                            }
                                         </select>
                                 </div>
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">月</label>
                                     <div class="col-sm-3">
                                         <span>
-                                            <select class="form-control">
+                                            <select class="form-control" id="add-day">
                                                 @for (int i = 1; i <= 31; i++)
                                                 {
-                                                    <option value="@i">@i </option>
+                                                    <option value="@i">@i 日</option>
                                                 }
                                             </select>
                                         </span>
                                     </div>
-                                <div class="col-sm-1">
-                                    日
-                                </div>
                                 </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1">备注</label>
 
                                 <div class="col-sm-9">
-                                    <textarea class="form-control limited" id="form-field-9" maxlength="50"></textarea>
+                                    <textarea class="form-control limited" id="add-remark" maxlength="50"></textarea>
                                 </div>
                             </div>
                         </form>
@@ -88,7 +84,7 @@
                 </div>
             </div>
                     <div class="modal-footer">
-                        <button class="btn btn-sm btn-primary pull-right" data-dismiss="modal">
+                        <button class="btn btn-sm btn-primary pull-right" data-dismiss="modal" id="add-save">
                           
                             保存
                         </button>
