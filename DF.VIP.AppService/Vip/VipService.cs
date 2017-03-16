@@ -40,7 +40,8 @@ namespace DF.VIP.AppService.Vip
         {
           return this.vipmemberQ.Entities.FirstOrDefault(o => o.ID == vipid);
         }
-       public void CreateVip(CreateVipRequest request)
+
+        public void CreateVip(CreateVipRequest request)
         {
             var member = new VIPMember(request.CompanyID,request.Phone,request.Nickname,0,request.Levelid,string.Empty,request.Remark,true,request.Gender,request.Birthday,System.DateTime.Now,System.DateTime.Now,"","" );
             this.cmd.Insert(member);

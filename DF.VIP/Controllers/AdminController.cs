@@ -26,6 +26,7 @@ namespace DF.VIP.Controllers
         [HttpGet]
         public ActionResult Company()
         {
+
             return View();
         }
         [HttpPost]
