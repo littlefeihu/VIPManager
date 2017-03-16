@@ -5,27 +5,29 @@
 <div class="row">
     @Html.Partial("_PartialMoneyConsume")
     @Html.Partial("_PartialMoneyPrePaid")
+    @Html.Partial("_PartialProductBuy")  
+    @Html.Partial("_PartialProductUsage")
 </div>
 <div class="row">
     <div class="col-xs-12">
         <div class="center">
             <span class="btn btn-app btn-sm btn-light no-hover">
-                <span class="line-height-1 bigger-170 blue"> 充值</span>
+                <href class="line-height-1 bigger-170 blue" data-toggle="modal"  href="#partial-prepaid-modal" role="button"> 充值</href>
                 <br>
                 <span class="line-height-1 smaller-90">&nbsp;</span>
             </span>
             <span class="btn btn-app btn-sm btn-yellow no-hover">
-                <span class="line-height-1 bigger-170"> 购买</span>
+                <href class="line-height-1 bigger-170 blue" data-toggle="modal" href="#partial-productbuy-modal" role="button"> 购买</href>
                 <br>
                 <span class="line-height-1 smaller-90"> 服务 </span>
             </span>
             <span class="btn btn-app btn-sm btn-pink no-hover">
-                <span class="line-height-1 bigger-170"> 金额 </span>
+                <href class="line-height-1 bigger-170 blue" data-toggle="modal" href="#partial-consume-modal" role="button"> 金额 </href>
                 <br>
                 <span class="line-height-1 smaller-90"> 消费 </span>
             </span>
             <span class="btn btn-app btn-sm btn-grey no-hover">
-                <span class="line-height-1 bigger-170"> 服务 </span>
+                <href class="line-height-1 bigger-170 blue" data-toggle="modal" href="#partial-productusage-modal" role="button"> 服务</href>
                 <br>
                 <span class="line-height-1 smaller-90"> 消费 </span>
             </span>
