@@ -3,6 +3,10 @@
     ViewBag.Title = "会员明细";
 }
 <div class="row">
+    @Html.Partial("_PartialMoneyConsume")
+    @Html.Partial("_PartialMoneyPrePaid")
+</div>
+<div class="row">
     <div class="col-xs-12">
         <div class="center">
             <span class="btn btn-app btn-sm btn-light no-hover">
@@ -31,7 +35,7 @@
             <div class="profile-info-row">
                 <div class="profile-info-name"> 昵称 </div>
                 <div class="profile-info-value">
-                    <span class="editable editable-click" >@Model.NickName</span>
+                    <span class="editable editable-click">@Model.NickName</span>
                 </div>
             </div>
             <div class="profile-info-row">
@@ -43,43 +47,43 @@
             <div class="profile-info-row">
                 <div class="profile-info-name"> 余额 </div>
                 <div class="profile-info-value">
-                    <span class="editable editable-click" >@Model.Amount</span>
+                    <span class="editable editable-click">@Model.Amount</span>
                 </div>
             </div>
             <div class="profile-info-row">
                 <div class="profile-info-name"> 会员等级 </div>
                 <div class="profile-info-value">
-                    <span class="editable editable-click" >@Model.VIPLevel.LevelName</span>
+                    <span class="editable editable-click">@Model.VIPLevel.LevelName</span>
                 </div>
             </div>
             <div class="profile-info-row">
                 <div class="profile-info-name"> 性别 </div>
                 <div class="profile-info-value">
-                    <span class="editable editable-click" >@Model.Gender</span>
+                    <span class="editable editable-click">@Model.Gender</span>
                 </div>
             </div>
             <div class="profile-info-row">
                 <div class="profile-info-name"> 生日 </div>
                 <div class="profile-info-value">
-                    <span class="editable editable-click" >@Model.Birthday</span>
+                    <span class="editable editable-click">@Model.Birthday</span>
                 </div>
             </div>
             <div class="profile-info-row">
                 <div class="profile-info-name"> 注册日期 </div>
                 <div class="profile-info-value">
-                    <span class="editable editable-click" >@Model.CreateTime.ToString("D")</span>
+                    <span class="editable editable-click">@Model.CreateTime.ToString("D")</span>
                 </div>
             </div>
             <div class="profile-info-row">
                 <div class="profile-info-name"> 上次消费日期 </div>
                 <div class="profile-info-value">
-                    <span class="editable editable-click" >@Model.UpdateTime.ToString("D")</span>
+                    <span class="editable editable-click">@Model.UpdateTime.ToString("D")</span>
                 </div>
             </div>
             <div class="profile-info-row">
                 <div class="profile-info-name"> 备注 </div>
                 <div class="profile-info-value">
-                    <span class="editable editable-click" >@Model.Remark</span>
+                    <span class="editable editable-click">@Model.Remark</span>
                 </div>
             </div>
         </div>
@@ -110,5 +114,5 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 </div>

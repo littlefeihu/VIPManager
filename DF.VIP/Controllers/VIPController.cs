@@ -20,7 +20,6 @@ namespace DF.VIP.Controllers
         IVipService vipService;
         IWebContext webContext;
        
-
         public VIPController(IResourceService resourceService, IVipService vipService, IWebContext webContext)
         {
             this.resourceService = resourceService;

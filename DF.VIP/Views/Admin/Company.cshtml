@@ -1,11 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "我的会员";
+    ViewBag.Title = "Company";
 }
+
 @section page_specific_plugin_styles
 {
-<link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
-<link rel="stylesheet" href="/assets/css/ui.jqgrid.min.css" />
+    <link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="/assets/css/ui.jqgrid.min.css" />
 }
 
 <div class="row">
@@ -16,7 +17,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-group">
-                            <input class="form-control" id="phonesearch" value="" placeholder="手机号" type="text">
+                            <input class="form-control" id="companysearch" value="" placeholder="公司名称" type="text">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-primary btn-sm" id="searchvipbtn">
                                     <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
@@ -26,10 +27,10 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <a href="#addvip-modal" role="button" class="btn btn-sm btn-primary" data-toggle="modal">
-                            添加会员
+                        <a href="#addcompany-modal" role="button" class="btn btn-sm btn-primary" data-toggle="modal">
+                            添加公司
                         </a>
-                   </div>
+                    </div>
                 </div>
             </form>
         </div>
@@ -38,7 +39,7 @@
         <!-- PAGE CONTENT ENDS -->
     </div><!-- /.col -->
 </div><!-- /.row -->
-@Html.Partial("_PartialAddVip")
+@Html.Partial("_PartialAddCompany")
 @section customJs
 {
     <script type="text/javascript">
@@ -65,7 +66,7 @@
         function LoadData(grid_selector) {
             $(grid_selector).jqGrid('setGridParam', {
                 datatype: 'json',
-                postData: { 'phone': $("#phonesearch").val() },
+                postData: { 'companyName': $("#companysearch").val() },
                 page: 1
             }).trigger("reloadGrid");
         }
@@ -73,24 +74,22 @@
 
             $("#add-save").click(function () {
 
-                if (!$("#add-phone").val())
+                if (!$("#add-companyName").val())
                 {
                     alert("手机号为必填项");
                     return;
                 }
                 var data = new Object();
                 data.phone = $("#add-phone").val();
+                data.companyName = $("#add-companyName").val();
+                data.phone = $("#add-phone").val();
+                data.mail = $("#add-mail").val();
+                data.qq = $("#add-qq").val();
+                data.remark = $("#add-remark").val();
 
-               data.nickname = $("#add-nickname").val();
-               data.gender = $("#add-gender").val();
-               data.level = $("#add-level").val();
-               data.month = $("#add-month").val();
-               data.day = $("#add-day").val();
-               data.remark = $("#add-remark").val();
+                $.post("/admin/AddCompany", data, function (result) {
 
-               $.post("/vip/Add", data, function (result) {
-
-                   alert("创建会员成功");
+                   alert("创建公司成功");
                 });
 
             });
@@ -119,24 +118,21 @@
 
             function PhoneLink(vellvalue,options,rowobj)
             {
-                return "<a href='/vip/detail/" + rowobj.ID+"' >"+ rowobj.PhoneNum + "</a>";
+                return "<a href='/admin/company/" + rowobj.ID+"' >"+ rowobj.PhoneNum + "</a>";
             }
             jQuery(grid_selector).jqGrid({
-                url: '/vip/members',
+                url: '/admin/Company',
                 datatype: "json",
                 height: "100%",
-                colNames: ['手机号', '昵称', '性别', '余额', '更新日期', '备注'],
+                colNames: ['公司', '联系电话', '邮箱', 'QQ',  '备注'],
                 colModel: [
-                    { name: 'PhoneNum', index: 'PhoneNum', width: 50, sortable: false,formatter:PhoneLink },
-                    { name: 'NickName', index: 'NickName', width: 30, sortable: false },
-                    { name: 'Gender', index: 'Gender', width: 15, sortable: false },
-                    { name: 'Amount', index: 'Amount', width: 15, sortable: false },
-                    { name: 'UpdateTime', index: 'UpdateTime', width: 50, sortable: false },
+                    { name: 'CompanyName', index: 'CompanyName', width: 50, sortable: false,formatter:PhoneLink },
+                    { name: 'Phone', index: 'Phone', width: 30, sortable: false },
+                    { name: 'Mail', index: 'Mail', width: 15, sortable: false },
+                    { name: 'QQ', index: 'QQ', width: 15, sortable: false },
                     { name: 'Remark', index: 'Remark', sortable: false }
                 ],
                 rowNum: 15,
-                sortname: 'UpdateTime',
-                sortorder: "desc",
                 viewrecords: true,
                 pager: pager_selector,
                 multiselect: false,
@@ -166,3 +162,4 @@
     <script src="/assets/js/jquery.jqGrid.min.js"></script>
     <script src="/assets/js/grid.locale-en.js"></script>
 }
+
