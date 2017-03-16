@@ -144,6 +144,7 @@
     <Compile Include="Model\JqGridResult.cs" />
     <Compile Include="Model\JqGridSearchRequest.cs" />
     <Compile Include="Model\SimpleUser.cs" />
+    <Compile Include="Model\VipSearchRequest.cs" />
     <Compile Include="NopConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseEntity.cs" />

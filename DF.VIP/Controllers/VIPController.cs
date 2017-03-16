@@ -3,7 +3,6 @@ using DF.VIP.AppService.Vip;
 using DF.VIP.Infrastructure.Authentication;
 using DF.VIP.Infrastructure.Entity;
 using DF.VIP.Infrastructure.Model;
-using DF.VIP.Infrastructure.Models;
 using DF.VIP.Infrastructure.Repository;
 using DF.VIP.Infrastructure.Web;
 using System;
@@ -43,7 +42,7 @@ namespace DF.VIP.Controllers
         }
 
 
-        public JsonResult Members(JqGridSearchRequest searchRequest)
+        public JsonResult Members(VipSearchRequest searchRequest)
         {
             var model = this.vipService.SearchVipMembers(searchRequest, this.webContext.CurrentUser.Company.ID);
 

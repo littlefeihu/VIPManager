@@ -11,7 +11,7 @@ namespace DF.VIP.AppService.Admin
     {
         public List<Company> GetAllCompany(string companyName)
         {
-
+            return null;
         }
     }
 }

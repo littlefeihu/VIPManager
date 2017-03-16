@@ -1,7 +1,6 @@
 ﻿using DF.VIP.AppService.Models;
 using DF.VIP.Infrastructure.Entity;
 using DF.VIP.Infrastructure.Model;
-using DF.VIP.Infrastructure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,7 @@ namespace DF.VIP.AppService.Vip
 {
     public interface IVipService
     {
-        JqGridResult<VipMemberItem> SearchVipMembers(JqGridSearchRequest request, int companyid);
+        JqGridResult<VipMemberItem> SearchVipMembers(VipSearchRequest request, int companyid);
 
         VIPMember GetVipDetail(int vipid);
 

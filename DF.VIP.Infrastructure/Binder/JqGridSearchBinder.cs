@@ -1,5 +1,5 @@
 ﻿
-using DF.VIP.Infrastructure.Models;
+using DF.VIP.Infrastructure.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace DF.VIP.Infrastructure.Binder
             var sord = controllerContext.HttpContext.Request["sord"];
             var _search = controllerContext.HttpContext.Request["_search"];
             var phone = controllerContext.HttpContext.Request["phone"];
-            return new JqGridSearchRequest (int.Parse(page),int.Parse(rows),sidx,sord,bool.Parse(_search),phone);
+            return new VipSearchRequest(int.Parse(page),int.Parse(rows),sidx,sord,bool.Parse(_search),phone);
         }
     }
 }

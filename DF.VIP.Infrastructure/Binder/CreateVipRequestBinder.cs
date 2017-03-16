@@ -1,6 +1,5 @@
 ﻿
 using DF.VIP.Infrastructure.Model;
-using DF.VIP.Infrastructure.Models;
 using DF.VIP.Infrastructure.Web;
 using System;
 using System.Collections.Generic;
